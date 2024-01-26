@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OTP Test Page</title>
+    <script src="src/utils/otp.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>OTP Test Page</h1>
+<form id="otpForm">
+    <label for="otp">Enter OTP:</label><br>
+    <input type="text" id="otp" name="otp"><br>
+    <input type="submit" value="Verify OTP">
+</form>
+<p id="result"></p>
+
+<script>
+    document.getElementById('otpForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const otp = document.getElementById('otp').value;
+        const key = 'd925a97c738a3995d402b1934020629cbb87a34c';
+        const counter = 0;
+        const window = 5;
+        const timeStep = 30;
+        const resultElement = document.getElementById('result');
+
+        if (verifyHotp(key, counter, window, otp)) {
+            resultElement.textContent = 'HOTP is valid.';
+        } else if (verifyTotp(key, window, timeStep, otp)) {
+            resultElement.textContent = 'TOTP is valid.';
+        } else {
+            resultElement.textContent = 'OTP is invalid.';
+        }
+    });
+</script>
+</body>
+</html>
