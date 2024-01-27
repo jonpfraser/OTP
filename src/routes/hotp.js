@@ -5,7 +5,6 @@ dotenv.config();
 
 import { verifyHotp } from '../utils/hotp.js';
 
-
 router.route('/')
     .post(async (req, res) => {
         const verified = verifyHotp(process.env.key, 1, 5, req.body.otp);

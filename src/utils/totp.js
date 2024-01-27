@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import { dynamicTruncate } from './shared.js';
+import thirtyTwo from 'thirty-two';
 
 const acceptedTotps = (key, window, timeStep) => {
     const otps = [];
@@ -10,7 +11,7 @@ const acceptedTotps = (key, window, timeStep) => {
         const counterBuffer = Buffer.alloc(6);
         counterBuffer.writeUIntBE(counter + i, 0, 6);
 
-        const hmac = crypto.createHmac('sha1', Buffer.from(key, 'hex'));
+        const hmac = crypto.createHmac('sha1', Buffer.from(thirtyTwo.decode(key).toString('hex')));
         hmac.update(counterBuffer);
         const hmacResult = hmac.digest();
         otps.push(dynamicTruncate(hmacResult));
@@ -22,6 +23,7 @@ const acceptedTotps = (key, window, timeStep) => {
 
 const verifyTotp = (key, window, timeStep, otp) => {
     const otps = acceptedTotps(key, window, timeStep);
+    console.log(otps);
     return otps.includes(otp.toString());
 }
 
