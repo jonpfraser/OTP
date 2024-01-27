@@ -1,6 +1,6 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
-import { acceptedHotps } from '../src/utils/otp.js';
+import { acceptedHotps } from '../src/utils/hotp.js';
 import dotenv from 'dotenv';
 
 dotenv.config();

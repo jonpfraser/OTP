@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 const router = express.Router();
 dotenv.config();
 
-import { verifyTotp } from '../utils/otp.js';
+import { verifyTotp } from '../utils/totp.js';
 
 
 router.route('/')
