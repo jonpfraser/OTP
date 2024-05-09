@@ -1,0 +1,27 @@
+<p id="code"></p>
+<p id="timer">30</p>
+
+<script>
+    const codes = <%- JSON.stringify(locals.codes.otps) %>;
+    let index = 0;
+    let timer = <%- JSON.stringify(locals.codes.timeLeft) %>;
+
+    const updateCode = () => {
+        document.getElementById('code').innerText = codes[index];
+        index = (index + 1) % codes.length;
+    };
+
+    const updateTimer = () => {
+        document.getElementById('timer').innerText = Math.floor(timer);
+        timer--;
+        if (timer < 0) {
+            timer = 30;
+            updateCode();
+        }
+    };
+
+    document.getElementById('timer').innerText = Math.floor(timer);
+
+    updateCode();
+    setInterval(updateTimer, 1000);
+</script>

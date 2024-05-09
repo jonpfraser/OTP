@@ -18,13 +18,17 @@ const acceptedTotps = (key, window, timeStep) => {
         i++;
     } while (i < window);
 
-    return otps;
+    const currentTime = Date.now() / 1000;
+    const nextTimeStep = Math.ceil(currentTime / timeStep) * timeStep;
+    const timeLeft = nextTimeStep - currentTime;
+
+    return { otps, timeLeft };
 }
 
 const verifyTotp = (key, window, timeStep, otp) => {
     const otps = acceptedTotps(key, window, timeStep);
     console.log(otps);
-    return otps.includes(otp.toString());
+    return otps.otps.includes(otp.toString());
 }
 
 export { acceptedTotps, verifyTotp };
