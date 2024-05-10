@@ -1,18 +1,66 @@
+<div class="timer-container">
+    <p id="timer">30</p>
+    <svg id="timerCircle" viewBox="0 0 40 40" transform="rotate(-90 20 20) scale(1,-1)">
+        <circle r="18" cx="20" cy="20" style="stroke-dasharray: 113; stroke-dashoffset: 113;" stroke="#000" fill="transparent" stroke-width="3"></circle>
+    </svg>
+    <svg id="backgroundCircle" viewBox="0 0 40 40" transform="rotate(-90 20 20)">
+        <circle r="17" cx="20" cy="20" stroke="#000" fill="transparent" stroke-width="0.5"></circle>
+    </svg>
+</div>
 <p id="code"></p>
-<p id="timer">30</p>
+
+<style>
+    .timer-container {
+        display: grid;
+        place-items: center;
+        width: 20px;
+        height: 20px;
+    }
+
+    #timer {
+        font-size: 1.2rem;
+        margin: 0;
+        color: #000;
+        z-index: 1;
+    }
+
+    #timerCircle {
+        position: absolute;
+        top: -40px;
+        z-index: 0;
+    }
+
+    #backgroundCircle {
+        position: absolute;
+        top: -40px;
+    }
+
+    #timerCircle circle {
+        transition: stroke-dashoffset 1s linear;
+    }
+</style>
 
 <script>
     const codes = <%- JSON.stringify(locals.codes.otps) %>;
-    let index = 0;
     let timer = <%- JSON.stringify(locals.codes.timeLeft) %>;
+    let index = 0;
+
+    const circle = document.querySelector('#timerCircle circle');
+    const circumference = 2 * Math.PI * circle.getAttribute('r');
+
+    circle.style.strokeDasharray = `${circumference} ${circumference}`;
+    const initialOffset = timer / 30 * circumference;
+    circle.style.strokeDashoffset = circumference - initialOffset;
 
     const updateCode = () => {
-        document.getElementById('code').innerText = codes[index];
+        document.querySelector('#code').innerText = codes[index];
         index = (index + 1) % codes.length;
     };
 
     const updateTimer = () => {
-        document.getElementById('timer').innerText = Math.floor(timer);
+        document.querySelector('#timer').innerText = Math.floor(timer);
+        const offset = timer / 30 * circumference;
+        circle.style.strokeDashoffset = circumference - offset;
         timer--;
         if (timer < 0) {
             timer = 30;
