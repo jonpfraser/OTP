@@ -18,12 +18,13 @@ const acceptedHotps = (key, counter, window) => {
     } while (i < window);
 
     return otps;
-}
+};
 
-const verifyHotp = (key, counter, window, otp) => {
-    const otps = acceptedHotps(key, counter, window);
-    console.log(otps);
-    return otps.includes(otp.toString());
-}
+const verifyHotp = (key, counter, window, hotp) => {
+    const hotps = acceptedHotps(key, counter, window);
+    const verified = hotps.includes(hotp.toString());
+    const index = hotps.indexOf(hotp.toString());
+    return { verified, index };
+};
 
 export { acceptedHotps, verifyHotp };

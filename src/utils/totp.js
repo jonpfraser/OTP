@@ -25,10 +25,9 @@ const acceptedTotps = (key, window, timeStep) => {
     return { otps, timeLeft };
 }
 
-const verifyTotp = (key, window, timeStep, otp) => {
-    const otps = acceptedTotps(key, window, timeStep);
-    console.log(otps);
-    return otps.otps.includes(otp.toString());
+const verifyTotp = (key, window, timeStep, totp) => {
+    const totps = acceptedTotps(key, window, timeStep);
+    return totps.otps.includes(totp.toString());
 }
 
 export { acceptedTotps, verifyTotp };

@@ -11,6 +11,7 @@ router.route('/')
     })
     .post(async (req, res) => {
         const locals = {
+            title: 'TOTP - Submission',
             verified: verifyTotp(process.env.key, 5, 30, req.body.totp)
         }
 
@@ -20,11 +21,10 @@ router.route('/')
 router.route('/generate')
     .get((req, res) => {
         const locals = {
+            title: 'TOTP - Generator',
             codes: acceptedTotps(process.env.key, 5, 30)
         }
         return res.render('totp/generate', locals)
     });
-
-// example of a url for totp - otpauth://totp/Vault:user@test.com?algorithm=SHA1&digits=6&issuer=Vault&period=30&secret=V7MBSK324I7KF6KVW34NDFH2GYHIF6JY
 
 export default router;

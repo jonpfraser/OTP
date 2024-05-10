@@ -6,7 +6,8 @@
   "main": "src/app.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "playwright": "npx playwright test --ui"
+    "playwright": "npx playwright test --ui",
+    "tailwind": "npx tailwindcss -i ./src/styles/input.css -o ./public/styles/output.css --watch"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,8 @@
     "ejs": "^3.1.10",
     "express": "^4.18.2",
     "express-ejs-layouts": "^2.5.1",
+    "lowdb": "^7.0.1",
+    "tailwindcss": "^3.4.3",
     "thirty-two": "^1.0.2"
   },
   "devDependencies": {

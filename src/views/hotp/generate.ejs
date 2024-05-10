@@ -1,0 +1,12 @@
+<div>
+    <h1 class="text-2xl">Accepted HOTP Codes</h1>
+    <div class="flex">
+        <% locals.codes.forEach((hotp, index) => { %>
+            <div class="flex flex-col">
+                <p class="mt-1"><%= index + 1 %></p>
+                <p class="mx-2"><%= hotp %></p>
+            </div>
+        <% }) %>
+    </div>
+    <%- include ('partials/linkBack.ejs') %>
+</div>
