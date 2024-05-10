@@ -38,6 +38,7 @@ router.route('/generate')
         await db.read()
         const locals = {
             title: 'HOTP - Generator',
+            backLink: '/hotp',
             codes: acceptedHotps(process.env.key, db.data.count, 5)
         }
         return res.render('hotp/generate', locals)
@@ -47,6 +48,7 @@ router.route('/seed')
     .get(async (req, res) => {
         const locals = {
             title: 'HOTP - Seed',
+            backLink: '/hotp',
         }
 
         db.data.count = 1;

@@ -1,6 +1,14 @@
-<h1>Two Factor Authentication</h1>
-<form action="/totp" method="post">
-    <label for="totp">Enter TOTP</label>
-    <input type="text" name="totp"></input>
-    <button type="submit">Submit</button>
-</form>
+<div>
+    <div class="text-center">
+        <h1 class="text-2xl">Time-based One Time Password</h1>
+        <p class="mt-1">Enter the TOTP code listed on the <a href="/totp/generate" class="text-blue-600 visited:text-purple-600">generator page</a></p>
+    </div>
+    <form action="/totp" method="post">
+        <div class="mt-2">
+            <div class="flex space-x-3">
+                <input type="text" name="totp" id="hotp" class="block w-full rounded-md border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

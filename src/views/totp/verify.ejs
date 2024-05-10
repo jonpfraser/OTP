@@ -1,1 +1,7 @@
-<p><%- locals.verified %></p>
+<div>
+    <div class="text-center">
+        <h1 class="text-2xl">Time-based One Time Password</h1>
+        <p class="mt-1">The entered HMAC code was <%- locals.verified ? 'accepted.' : 'not accepted.'; %></p>
+        <%- include ('../partials/backLink.ejs') %>
+    </div>
+</div>

@@ -1,7 +1,8 @@
+<% const { verified } = locals; %>
 <div>
     <div class="text-center">
         <h1 class="text-2xl">HMAC One Time Password</h1>
         <p class="mt-1">The entered HMAC code was <%- locals.verified ? 'accepted.' : 'not accepted.'; %></p>
-        <%- include ('partials/linkBack.ejs') %>
+        <%- include ('../partials/backLink.ejs') %>
     </div>
 </div>
